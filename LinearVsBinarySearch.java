@@ -13,18 +13,18 @@
 
 import java.util.Random;
 
-public class LinearVsBinarySearch{
-    public static void main(String[] args){
+public class LinearVsBinarySearch {
+    public static void main(String[] args) {
 		System.out.println("    n:   |  linear  |  binary  |");
 		System.out.println("---------+----------+-----------");
 
-        for(int i = 1000; i <= 100000; i=i+1000){
+        for(int i = 1000; i <= 100000; i = i + 1000) {
         	System.out.printf("%7d  |%7d   |%7d   |\n", i, timeLinear(i), timeBinary(i));
         }
     }
 
     // for given n, returns arranged table of 1:n numbers
-    public static int[] generateTable(int n){
+    public static int[] generateTable(int n) {
     	int[] t = new int[n];
 
     	for(int i = 1; i <= n; i++)
@@ -33,7 +33,7 @@ public class LinearVsBinarySearch{
     }
 
     // linear search
-    public static int findLinear(int[] a, int v){
+    public static int findLinear(int[] a, int v) {
     	for(int i = 0; i < a.length; i++)
     		if(a[i] == v)
     			return i;
@@ -41,10 +41,10 @@ public class LinearVsBinarySearch{
     }
 
     // binary search
-    public static int findBinary(int[] a, int l, int r, int v){
+    public static int findBinary(int[] a, int l, int r, int v) {
     	int ix = l+(r-l)/2;
 
-    	while(l <= r){
+    	while(l <= r) {
     		if(a[ix] == v)
     			return ix;
     		if(v > a[ix])
@@ -57,30 +57,30 @@ public class LinearVsBinarySearch{
     }
 
     // linear time
-    public static long timeLinear(int n){
+    public static long timeLinear(int n) {
     	int[] table = generateTable(n);
     	Random r = new Random();
 
     	long startTime = System.nanoTime();
-    	for(int i = 0; i < 1000; i++){
+    	for(int i = 0; i < 1000; i++) {
     		// random number 1:n
-    		int randomNum = r.nextInt(n)+1;
+    		int randomNum = r.nextInt(n) + 1;
     		findLinear(table, randomNum);
     	}
-    	return (System.nanoTime() - startTime)/1000;
+    	return (System.nanoTime() - startTime) / 1000;
     }
 
     // binary time
-    public static long timeBinary(int n){
+    public static long timeBinary(int n) {
     	int[] table = generateTable(n);
     	Random r = new Random();
 
     	long startTime = System.nanoTime();
-    	for(int i = 0; i < 1000; i++){
+    	for(int i = 0; i < 1000; i++) {
     		// random number 1:n
-    		int randomNum = r.nextInt(n)+1;
+    		int randomNum = r.nextInt(n) + 1;
     		findBinary(table, 0, n-1, randomNum);
     	}
-    	return (System.nanoTime() - startTime)/1000;
+    	return (System.nanoTime() - startTime) / 1000;
     }
 }
