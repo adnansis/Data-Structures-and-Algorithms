@@ -12,8 +12,8 @@
 
 import java.util.Scanner;
 
-public class HeapSort{
-    public static void main(String[] args){
+public class HeapSort {
+    public static void main(String[] args) {
         Scanner s = new Scanner(System.in);
 
         // Array size
@@ -22,7 +22,7 @@ public class HeapSort{
         int i = 0;
 
         // Array input
-        while(i != n){
+        while(i != n) {
             a[i] = s.nextInt();
             i++;
         }
@@ -35,17 +35,17 @@ public class HeapSort{
         Heapify a subtree with root index i
         length is heap size
     */
-    public static void heapify(int a[], int i, int length){
-        if(i < (length/2)){
+    public static void heapify(int a[], int i, int length) {
+        if(i < (length/2)) {
             int s = 2*i+1;
 
-            if(s+1 < length){
-                if(a[s] < a[s+1]){
+            if(s+1 < length) {
+                if(a[s] < a[s+1]) {
                     s++;
                 }
             }
 
-            if(a[i] < a[s]){
+            if(a[i] < a[s]) {
                 int x = a[i];
                 a[i] = a[s];
                 a[s] = x;
@@ -56,18 +56,18 @@ public class HeapSort{
     }
 
     // Function to rearrange the initial array into a valid heap
-    public static void buildHeap(int[] a){
-        for(int i = (a.length/2); i >= 0; i--){
+    public static void buildHeap(int[] a) {
+        for(int i = (a.length/2); i >= 0; i--) {
             heapify(a, i, a.length);
         }
     }
 
-    public static void heapsort(int[] a, int n){
+    public static void heapsort(int[] a, int n) {
         buildHeap(a);
         // Printing initial valid heap
         printHeap(a, a.length);
 
-        for(int i = n-1; i > 0; i--){
+        for(int i = n-1; i > 0; i--) {
             int x = a[0];
             a[0] = a[i];
             a[i] = x;
@@ -83,12 +83,12 @@ public class HeapSort{
 
         Tree levels separated by '|'
     */
-    public static void printHeap(int a[], int end){
+    public static void printHeap(int a[], int end) {
         int i = 0;
         int separator = 2;
 
-        while(i != end){
-            if(i == separator-1){
+        while(i != end) {
+            if(i == separator-1) {
                 System.out.print("| ");
                 separator *= 2;
             }
