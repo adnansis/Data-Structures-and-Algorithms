@@ -9,39 +9,39 @@ class Matrix {
 		m = new int[n][n];
 	}
 
-    // set value at i,j
+    	// set value at i,j
 	public void setV(int i, int j, int val) {
-        m[i][j] = val;
+        	m[i][j] = val;
 	}
 
-    // get value at index i,j
+    	// get value at index i,j
 	public int v(int i, int j) {
-        return m[i][j];
+        	return m[i][j];
 	}
 
-    // return a square submatrix from this
+    	// return a square submatrix from this
 	public Matrix getSubmatrix(int startRow, int startCol, int dim) {
 		Matrix subM = new Matrix(dim);
         
 		for (int i = 0; i < dim; i++) {
 			for (int j = 0; j < dim; j++) {
 				subM.setV(i, j, m[startRow+i][startCol+j]);
-            }
-        }
+            		}
+        	}
 
 		return subM;
 	}
 
-    // write this matrix as a submatrix from b (useful for the resultult of multiplication)
+    	// write this matrix as a submatrix from b (useful for the resultult of multiplication)
 	public void putSubmatrix(int startRow, int startCol, Matrix b) {
 		for(int i = 0; i < b.n; i++){
 			for(int j=0; j < b.n; j++){
 				setV(startRow+i, startCol+j, b.v(i,j));
-            }
-        }
+            		}
+        	}
 	}
 
-    // matrix addition
+    	// matrix addition
 	public Matrix sum(Matrix b) {
 		Matrix c = new Matrix(n);
 
@@ -49,7 +49,7 @@ class Matrix {
 			for(int j = 0; j < n; j++) {
 				c.setV(i, j, m[i][j] + b.v(i, j));
 			}
-        }
+        	}
 
 		return c;
 	}
@@ -71,10 +71,10 @@ class Matrix {
         int val = 0;
 
         for(int i = 0; i < this.n; i++) {
-			for(int j = 0; j < this.n; j++) {
-                val += this.v(i, j);
-			}
+		for(int j = 0; j < this.n; j++) {
+               		val += this.v(i, j);
 		}
+	}
         
         return val;
     }
