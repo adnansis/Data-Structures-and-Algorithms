@@ -54,7 +54,7 @@ class Matrix {
 		return c;
 	}
 
-    // matrix subtraction
+        // matrix subtraction
 	public Matrix sub(Matrix b) {
 		Matrix c = new Matrix(n);
 
@@ -67,14 +67,14 @@ class Matrix {
 		return c;
 	}
 
-    public int sumOfEl() {
-        int val = 0;
+        public int sumOfEl() {
+		int val = 0;
 
-        for(int i = 0; i < this.n; i++) {
-		for(int j = 0; j < this.n; j++) {
-               		val += this.v(i, j);
+		for(int i = 0; i < this.n; i++) {
+			for(int j = 0; j < this.n; j++) {
+				val += this.v(i, j);
+			}
 		}
-	}
         
         return val;
     }
@@ -99,53 +99,53 @@ class Matrix {
 	}
 
 
-    // Strassen multiplication
+        // Strassen multiplication
 	public Matrix multStrassen(Matrix b, int cutoff) {
-        Matrix result = new Matrix(this.n);
+		Matrix result = new Matrix(this.n);
 
-        if(this.n == cutoff) {
-            result = this.mult(b, this.n);
-        } else {
-            int newDim = this.n / 2;
+		if(this.n == cutoff) {
+		    result = this.mult(b, this.n);
+		} else {
+		    int newDim = this.n / 2;
 
-            Matrix A11 = this.getSubmatrix(0, 0, newDim);
-            Matrix A12 = this.getSubmatrix(0, newDim, newDim);
-            Matrix A21 = this.getSubmatrix(newDim, 0, newDim);
-            Matrix A22 = this.getSubmatrix(newDim, newDim, newDim);
+		    Matrix A11 = this.getSubmatrix(0, 0, newDim);
+		    Matrix A12 = this.getSubmatrix(0, newDim, newDim);
+		    Matrix A21 = this.getSubmatrix(newDim, 0, newDim);
+		    Matrix A22 = this.getSubmatrix(newDim, newDim, newDim);
 
-            Matrix B11 = b.getSubmatrix(0, 0, newDim);
-            Matrix B12 = b.getSubmatrix(0, newDim, newDim);
-            Matrix B21 = b.getSubmatrix(newDim, 0, newDim);
-            Matrix B22 = b.getSubmatrix(newDim, newDim, newDim);
+		    Matrix B11 = b.getSubmatrix(0, 0, newDim);
+		    Matrix B12 = b.getSubmatrix(0, newDim, newDim);
+		    Matrix B21 = b.getSubmatrix(newDim, 0, newDim);
+		    Matrix B22 = b.getSubmatrix(newDim, newDim, newDim);
 
-            Matrix M1 = (A11.sum(A22)).multStrassen(B11.sum(B22), cutoff);
-            Matrix M2 = (A21.sum(A22)).multStrassen(B11, cutoff);
-            Matrix M3 = (A11).multStrassen(B12.sub(B22), cutoff);
-            Matrix M4 = (A22).multStrassen(B21.sub(B11), cutoff);
-            Matrix M5 = (A11.sum(A12)).multStrassen(B22, cutoff);
-            Matrix M6 = (A21.sub(A11)).multStrassen(B11.sum(B12), cutoff);
-            Matrix M7 = (A12.sub(A22)).multStrassen(B21.sum(B22), cutoff);
+		    Matrix M1 = (A11.sum(A22)).multStrassen(B11.sum(B22), cutoff);
+		    Matrix M2 = (A21.sum(A22)).multStrassen(B11, cutoff);
+		    Matrix M3 = (A11).multStrassen(B12.sub(B22), cutoff);
+		    Matrix M4 = (A22).multStrassen(B21.sub(B11), cutoff);
+		    Matrix M5 = (A11.sum(A12)).multStrassen(B22, cutoff);
+		    Matrix M6 = (A21.sub(A11)).multStrassen(B11.sum(B12), cutoff);
+		    Matrix M7 = (A12.sub(A22)).multStrassen(B21.sum(B22), cutoff);
 
-            System.out.println("m1: " + M1.sumOfEl());
-            System.out.println("m2: " + M2.sumOfEl());
-            System.out.println("m3: " + M3.sumOfEl());
-            System.out.println("m4: " + M4.sumOfEl());
-            System.out.println("m5: " + M5.sumOfEl());
-            System.out.println("m6: " + M6.sumOfEl());
-            System.out.println("m7: " + M7.sumOfEl());
+		    System.out.println("m1: " + M1.sumOfEl());
+		    System.out.println("m2: " + M2.sumOfEl());
+		    System.out.println("m3: " + M3.sumOfEl());
+		    System.out.println("m4: " + M4.sumOfEl());
+		    System.out.println("m5: " + M5.sumOfEl());
+		    System.out.println("m6: " + M6.sumOfEl());
+		    System.out.println("m7: " + M7.sumOfEl());
 
-            Matrix C11 = (M1.sum(M4)).sub(M5).sum(M7);
-            Matrix C12 = M3.sum(M5);
-            Matrix C21 = M2.sum(M4);
-            Matrix C22 = M1.sub(M2).sum(M3.sum(M6));
+		    Matrix C11 = (M1.sum(M4)).sub(M5).sum(M7);
+		    Matrix C12 = M3.sum(M5);
+		    Matrix C21 = M2.sum(M4);
+		    Matrix C22 = M1.sub(M2).sum(M3.sum(M6));
 
-            result.putSubmatrix(0, 0, C11);
-            result.putSubmatrix(0, newDim, C12);
-            result.putSubmatrix(newDim, 0, C21);
-            result.putSubmatrix(newDim, newDim, C22);
-        }
+		    result.putSubmatrix(0, 0, C11);
+		    result.putSubmatrix(0, newDim, C12);
+		    result.putSubmatrix(newDim, 0, C21);
+		    result.putSubmatrix(newDim, newDim, C22);
+		}
 
-        return result;
+		return result;
 	}
 }
 
