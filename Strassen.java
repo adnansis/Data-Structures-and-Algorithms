@@ -2,21 +2,21 @@ import java.util.Scanner;
 
 class Matrix {
 	private int[][] m;
-	public int n; //only square matrices
+	public int n; // only square matrices
 
 	public Matrix(int n) {
 		this.n = n;
 		m = new int[n][n];
 	}
 
-    //set value at i,j
+    // set value at i,j
 	public void setV(int i, int j, int val) {
-		m[i][j] = val;
+        m[i][j] = val;
 	}
 
     // get value at index i,j
 	public int v(int i, int j) {
-		return m[i][j];
+        return m[i][j];
 	}
 
     // return a square submatrix from this
@@ -63,7 +63,7 @@ class Matrix {
 				c.setV(i, j, m[i][j] - b.v(i, j));
 			}
 		}
-
+        
 		return c;
 	}
 
@@ -79,7 +79,7 @@ class Matrix {
         return val;
     }
 
-	//simple multiplication
+	// simple multiplication
 	public Matrix mult(Matrix b, int n) {
         Matrix c = new Matrix(n);
         int i, j, k;
